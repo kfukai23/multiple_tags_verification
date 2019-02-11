@@ -26,8 +26,8 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.json
   def create
-    @article= current_user.articles.build(articles_params)
-    category_list = params[:category_list].split(",")
+    @article= current_user.articles.build(article_params)
+    category_list = params[:tag].split(",")
     if @article.save
       @article.save_categories(category_list)
       flash[:success] = "記事を作成しました"
@@ -53,7 +53,7 @@ class ArticlesController < ApplicationController
   # PATCH/PUT /articles/1.json
   def update
     @article= Article.find(params[:id])
-    category_list = params[:category_list].split(",")
+    category_list = params[:tag].split(",")
     if @article.update_attributes(article_params)
       @article.save_categories(category_list)
       flash[:success] = "記事を更新しました"
@@ -81,6 +81,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :body)
+      params.require(:article).permit(:title, :body, :tag)
     end
 end

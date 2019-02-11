@@ -1,6 +1,7 @@
 class Article < ApplicationRecord
-  has_many :categories, through: :article_categories
   has_many :article_categories, dependent: :destroy
+  has_many :categories, through: :article_categories
+  accepts_nested_attributes_for :article_categories
 
   def save_categories(tags)
     current_tags = self.categories.pluck(:name) unless self.categories.nil?
