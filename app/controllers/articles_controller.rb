@@ -4,8 +4,10 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
-    @tags = Category.all
+    # @articles = Article.all
+    @articles = current_user.articles.all
+    # @tags = Category.all
+    @tags = current_user.categories.all
   end
 
   # GET /articles/1
@@ -15,7 +17,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/new
   def new
-    @article = Article.new
+    @article = current_user.articles.new
   end
 
   # GET /articles/1/edit
@@ -30,7 +32,7 @@ class ArticlesController < ApplicationController
     @article= current_user.articles.build(article_params)
     category_list = params[:tag].split(",")
     if @article.save
-      @article.save_categories(category_list)
+      @article.save_categories(category_list, current_user)
       flash[:success] = "記事を作成しました"
       redirect_to articles_url
     else
@@ -56,7 +58,8 @@ class ArticlesController < ApplicationController
     @article= Article.find(params[:id])
     category_list = params[:tag].split(",")
     if @article.update_attributes(article_params)
-      @article.save_categories(category_list)
+      @article.save_categories(category_list, current_user)
+
       flash[:success] = "記事を更新しました"
       redirect_to articles_url
     else
@@ -68,6 +71,7 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1.json
   def destroy
     @article.destroy
+
     respond_to do |format|
       format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
       format.json { head :no_content }
