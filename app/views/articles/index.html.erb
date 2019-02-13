@@ -24,6 +24,35 @@
   </tbody>
 </table>
 
+<h1>Tags</h1>
+
+<table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Article_id</th>
+        <th>User_id</th>
+        <th>Created_at</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <% @tags.each do |tag| %>
+        <tr>
+          <td><%= tag.id %></td>
+          <td><%= tag.name %></td>
+          <td><% tag.articles.each do |article| %>
+                <%= article.id %> 
+              <% end %>
+          </td>
+          <td><%= tag.user_id %></td>
+          <td><%= tag.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
 <br>
 
 <%= link_to 'New Article', new_article_path %>

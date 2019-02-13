@@ -4,7 +4,10 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    # @articles = Article.all
+    @articles = current_user.articles.all
+    # @tags = Category.all
+    @tags = current_user.categories.all
   end
 
   # GET /articles/1
@@ -14,40 +17,53 @@ class ArticlesController < ApplicationController
 
   # GET /articles/new
   def new
-    @article = Article.new
+    @article = current_user.articles.new
   end
 
   # GET /articles/1/edit
   def edit
+    @article= Article.find(params[:id])
+    @category_list = @article.categories.pluck(:name).join(",")
   end
 
   # POST /articles
   # POST /articles.json
   def create
-    @article = Article.new(article_params)
-
-    respond_to do |format|
-      if @article.save
-        format.html { redirect_to @article, notice: 'Article was successfully created.' }
-        format.json { render :show, status: :created, location: @article }
-      else
-        format.html { render :new }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
-      end
+    @article= current_user.articles.build(article_params)
+    category_list = params[:tag].split(",")
+    if @article.save
+      @article.save_categories(category_list, current_user)
+      flash[:success] = "記事を作成しました"
+      redirect_to articles_url
+    else
+      render 'articles/new'
     end
+
+    # @article = Article.new(article_params)
+
+    # respond_to do |format|
+    #   if @article.save
+    #     format.html { redirect_to @article, notice: 'Article was successfully created.' }
+    #     format.json { render :show, status: :created, location: @article }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @article.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /articles/1
   # PATCH/PUT /articles/1.json
   def update
-    respond_to do |format|
-      if @article.update(article_params)
-        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
-        format.json { render :show, status: :ok, location: @article }
-      else
-        format.html { render :edit }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
-      end
+    @article= Article.find(params[:id])
+    category_list = params[:tag].split(",")
+    if @article.update_attributes(article_params)
+      @article.save_categories(category_list, current_user)
+
+      flash[:success] = "記事を更新しました"
+      redirect_to articles_url
+    else
+      render 'edit'
     end
   end
 
@@ -55,6 +71,7 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1.json
   def destroy
     @article.destroy
+
     respond_to do |format|
       format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
       format.json { head :no_content }
@@ -69,6 +86,6 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :body)
+      params.require(:article).permit(:title, :body, :tag)
     end
 end

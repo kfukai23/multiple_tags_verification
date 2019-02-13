@@ -21,6 +21,11 @@
     <%= form.text_area :body %>
   </div>
 
+  <div class="field">
+    <%= form.label "tags" %>
+    <%= text_field_tag :tag, [], "data-role" => "tagsinput" %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
