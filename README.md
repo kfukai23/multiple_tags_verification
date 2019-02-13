@@ -1,7 +1,7 @@
 # README
 Ruby on Rails 複数タグ機能検証用リポジトリ
 
-* 実現できた特徴
+## 実現できた特徴
 1) 複数のタグをひとつの投稿に紐付けて生成できる
 2) 投稿更新時にタグも更新できる 
 3) 投稿作成時に入力したタグが自動で生成される
@@ -9,22 +9,22 @@ Ruby on Rails 複数タグ機能検証用リポジトリ
 5) userごとに、紐付けられた投稿がゼロになったタグは自動的に削除される
 6) タグ入力はBootstrap Tags Inputを用い、よりそれらしい見た目と入力感を備えている
 
-* Dependencies
+## Dependencies
 Ruby 2.5.3
 Ruby on Rails 5.2.2
 Bundler 1.17.3
 
-* ライブラリ
+## ライブラリ
 Bootstrap Tags Input https://bootstrap-tagsinput.github.io/bootstrap-tagsinput/examples/
 
-* 手順
+## 手順
 Bootstrap Tags Inputを関連Gemとともにインストール、マニフェストファイルに記入
 https://github.com/koalamask/multiple_tags_verification/commit/409911cca317787e1114fc088adcba605245e622
 
 bootstrap-tagsinput.jsをTurbolinksのイベントフックに合わせて発火できるよう修正する
 https://github.com/koalamask/multiple_tags_verification/commit/d816474cb149d3872aacc36b1e7a1796f0582028
 
-* 参考資料
+## 参考資料
 - Bootstrap Tags Input関連
 https://stackoverflow.com/questions/17317816/rails-javascript-only-works-after-reload
 http://midnight-engineering.hatenadiary.jp/entry/2018/09/20/182547
