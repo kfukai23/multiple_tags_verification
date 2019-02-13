@@ -1,4 +1,4 @@
-document.addEventListener("turbolinks:load",function ($) {
+(function ($) {
   "use strict";
 
   var defaultOptions = {
@@ -640,7 +640,10 @@ document.addEventListener("turbolinks:load",function ($) {
    * Initialize tagsinput behaviour on inputs and selects which have
    * data-role=tagsinput
    */
-  $(function() {
+  // $(function() {
+  //   $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
+  // });
+  $(document).on("turbolinks:load", function() {
     $("input[data-role=tagsinput], select[multiple][data-role=tagsinput]").tagsinput();
   });
 }(window.jQuery));
