@@ -25,10 +25,10 @@ bootstrap-tagsinput.jsをTurbolinksのイベントフックに合わせて発火
 https://github.com/koalamask/multiple_tags_verification/commit/d816474cb149d3872aacc36b1e7a1796f0582028
 
 ## 参考資料
-- Bootstrap Tags Input関連
-https://stackoverflow.com/questions/17317816/rails-javascript-only-works-after-reload
-http://midnight-engineering.hatenadiary.jp/entry/2018/09/20/182547
-https://www.wcf-drill.com/%E3%81%A9%E3%81%86%E3%82%82%E6%8C%99%E5%8B%95%E3%81%8C%E3%81%8A%E3%81%8B%E3%81%97%E3%81%84%E3%81%AA%E3%81%A8%E6%80%9D%E3%81%A3%E3%81%A6%E3%81%9F%E3%82%89turbolinks%E3%81%8B-417.html
+1) Bootstrap Tags Input関連
+- https://stackoverflow.com/questions/17317816/rails-javascript-only-works-after-reload
+- http://midnight-engineering.hatenadiary.jp/entry/2018/09/20/182547
+- https://www.wcf-drill.com/%E3%81%A9%E3%81%86%E3%82%82%E6%8C%99%E5%8B%95%E3%81%8C%E3%81%8A%E3%81%8B%E3%81%97%E3%81%84%E3%81%AA%E3%81%A8%E6%80%9D%E3%81%A3%E3%81%A6%E3%81%9F%E3%82%89turbolinks%E3%81%8B-417.html
 
-- 複数タグ生成、レコード操作関連
-https://qiita.com/tobita0000/items/daaf015fb98fb918b6b8
+2) 複数タグ生成、レコード操作関連
+- https://qiita.com/tobita0000/items/daaf015fb98fb918b6b8
